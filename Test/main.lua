@@ -14,6 +14,10 @@ VIRTUAL_HEIGHT = 243
 function love.load()
     
     love.graphics.setDefaultFilter("nearest", "nearest")
+
+    smallFont = love.graphics.newFont("font.ttf", 8)
+
+    love.graphics.setFont(smallFont)
     
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
         fullscreen = false,
@@ -30,6 +34,9 @@ end
 
 function love.draw()
     push:apply("start")
+
+    love.graphics.clear(40, 45, 52, 255)
+
     love.graphics.printf("Hello Pong!", 0, VIRTUAL_HEIGHT / 2 - 6, VIRTUAL_WIDTH, "center")
     push:apply("end")
 end 
