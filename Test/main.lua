@@ -37,6 +37,8 @@ function love.load()
     player1Score = 0
     player2Score = 0
 
+    servingPlayer = 1
+
     player1 = Paddle(10, 30, 5, 20)
     player2 = Paddle(VIRTUAL_WIDTH - 10, VIRTUAL_HEIGHT / 2 - 30, 5, 30)
 
@@ -62,7 +64,17 @@ function love.update(dt)
         player2.dy = 0
     end
 
-    if gameState == "play" then
+    
+    if gameState == 'serve' then
+        -- before switching to play, initialize ball's velocity based
+        -- on player who last scored
+        ball.dy = math.random(-50, 50)
+        if servingPlayer == 1 then
+            ball.dx = math.random(140, 200)
+        else
+            ball.dx = -math.random(140, 200)
+        end
+    elseif gameState == "play" then
         ball:update(dt)
 
         if ball:collides(player1) then
@@ -82,6 +94,30 @@ function love.update(dt)
             else
                 ball.dy = math.random(10, 150)
             end
+        end
+
+        if ball.x < 0 then
+            servingPlayer = 1
+            player2Score = player2Score + 1
+            ball:reset()
+            gameState = 'serve'
+        end
+    
+        if ball.x > VIRTUAL_WIDTH then
+            servingPlayer = 2
+            player1Score = player1Score + 1
+            ball:reset()
+            gameState = 'serve'
+        end
+
+        if ball.y <= 0 then
+            ball.y = 0
+            ball.dy = -ball.dy
+        end
+        
+        if ball.y >= VIRTUAL_HEIGHT - 4 then
+            ball.y = VIRTUAL_HEIGHT - 4
+            ball.dy = -ball.dy
         end
     end
 
@@ -113,6 +149,9 @@ function love.draw()
         love.graphics.printf('Hello Play State!', 0, 20, VIRTUAL_WIDTH, 'center')
     end
     
+    love.graphics.print("Player 1: " .. tostring(player1Score), 10, VIRTUAL_HEIGHT - 10)
+    love.graphics.print("Player 2: " .. tostring(player2Score), VIRTUAL_WIDTH - 100, VIRTUAL_HEIGHT - 10)
+
     player1:render()
     player2:render()
     ball:render()
