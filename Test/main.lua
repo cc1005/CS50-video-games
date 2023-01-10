@@ -1,6 +1,5 @@
 --[[
     Heavily inspired by CS50gamedev course on edx
-
 ]]
 
 push = require "push"
@@ -86,6 +85,7 @@ function love.update(dt)
                 ball.dy = math.random(10, 150)
             end
         end
+        
         if ball:collides(player2) then
             ball.dx = -ball.dx * 1.03
             ball.x = player2.x - 4
@@ -143,6 +143,7 @@ function love.draw()
 
     love.graphics.clear(40/255, 45/255, 52/255, 255/255)
     love.graphics.setFont(smallFont)
+    
     if gameState == 'start' then
         love.graphics.printf('Hello Start State!', 0, 20, VIRTUAL_WIDTH, 'center')
     else
