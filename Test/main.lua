@@ -14,7 +14,7 @@ WINDOW_HEIGHT = 720
 VIRTUAL_WIDTH = 432
 VIRTUAL_HEIGHT = 243
 
-PADDLE_SPEED = 100
+PADDLE_SPEED = 150
 
 function love.load()
     
@@ -69,9 +69,9 @@ function love.update(dt)
         -- on player who last scored
         ball.dy = math.random(-50, 50)
         if servingPlayer == 1 then
-            ball.dx = math.random(140, 200)
+            ball.dx = math.random(100, 120)
         else
-            ball.dx = -math.random(140, 200)
+            ball.dx = -math.random(100, 120)
         end
     elseif gameState == "play" then
         ball:update(dt)
@@ -129,7 +129,7 @@ function love.keypressed(key)
     if key == "escape" then
         love.event.quit()
     elseif key == "enter" or key == "return" then
-        if gameState == "start" then
+        if gameState == "start" or "serve" then
             gameState = "play"
         else
             gameState = "start"
