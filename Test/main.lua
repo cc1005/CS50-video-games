@@ -100,14 +100,14 @@ function love.update(dt)
             servingPlayer = 1
             player2Score = player2Score + 1
             ball:reset()
-            gameState = 'serve'
+            gameState = "serve"
         end
     
         if ball.x > VIRTUAL_WIDTH then
             servingPlayer = 2
             player1Score = player1Score + 1
             ball:reset()
-            gameState = 'serve'
+            gameState = "serve"
         end
     end
 
@@ -120,6 +120,10 @@ function love.keypressed(key)
         love.event.quit()
     elseif key == "enter" or key == "return" then
         if gameState == "start" then
+            gameState = "play"
+            -- All the below needs sorted out, serving is currently not working.
+        elseif gameState == "serve" then
+            love.graphics.printf("Player " .. servingPlayer .. "'s serve", 0, 20, VIRTUAL_WIDTH, "center")
             gameState = "play"
         else
             gameState = "start"
