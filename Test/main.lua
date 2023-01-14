@@ -123,7 +123,6 @@ function love.keypressed(key)
             gameState = "play"
             -- All the below needs sorted out, serving is currently not working.
         elseif gameState == "serve" then
-            love.graphics.printf("Player " .. servingPlayer .. "'s serve", 0, 20, VIRTUAL_WIDTH, "center")
             gameState = "play"
         else
             gameState = "start"
@@ -140,6 +139,8 @@ function love.draw()
     
     if gameState == 'start' then
         love.graphics.printf('Welcome to ConPong!', 0, 20, VIRTUAL_WIDTH, 'center')
+    elseif gameState == "serve" then
+        love.graphics.printf("Player " .. servingPlayer .. "'s serve", 0, 20, VIRTUAL_WIDTH, "center")
     else
         love.graphics.printf('CONPONG!', 0, 20, VIRTUAL_WIDTH, 'center')
     end
