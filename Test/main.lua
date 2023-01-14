@@ -99,15 +99,27 @@ function love.update(dt)
         if ball.x < 0 then
             servingPlayer = 1
             player2Score = player2Score + 1
-            ball:reset()
-            gameState = "serve"
+            if player2Score == 2 then
+                winningPlayer = 2
+                ball:reset()
+                gameState = "done"
+            else
+                ball:reset()
+                gameState = "serve"
+            end
         end
     
         if ball.x > VIRTUAL_WIDTH then
             servingPlayer = 2
             player1Score = player1Score + 1
-            ball:reset()
-            gameState = "serve"
+            if player1Score == 2 then
+                winningPlayer = 1
+                ball:reset()
+                gameState = "done"
+            else
+                ball:reset()
+                gameState = "serve"
+            end
         end
     end
 
@@ -124,6 +136,10 @@ function love.keypressed(key)
             -- All the below needs sorted out, serving is currently not working.
         elseif gameState == "serve" then
             gameState = "play"
+        elseif gameState == "done" then
+            gameState = "start"
+            player1Score = 0
+            player2Score = 0
         else
             gameState = "start"
             ball:reset()
@@ -141,6 +157,8 @@ function love.draw()
         love.graphics.printf('Welcome to ConPong!', 0, 20, VIRTUAL_WIDTH, 'center')
     elseif gameState == "serve" then
         love.graphics.printf("Player " .. servingPlayer .. "'s serve", 0, 20, VIRTUAL_WIDTH, "center")
+    elseif gameState == "done" then
+        love.graphics.printf("Player " .. winningPlayer .. "'s skill has served them well! \n\n Player " .. winningPlayer .. "wins!", 0, 20, VIRTUAL_WIDTH, "center")
     else
         love.graphics.printf('CONPONG!', 0, 20, VIRTUAL_WIDTH, 'center')
     end
