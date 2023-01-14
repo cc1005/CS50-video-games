@@ -14,11 +14,11 @@ WINDOW_HEIGHT = 720
 VIRTUAL_WIDTH = 432
 VIRTUAL_HEIGHT = 243
 
-PADDLE_SPEED = 150
+PADDLE_SPEED = 180
 
 function love.load()
     
-    love.window.setTitle("Pongish")
+    love.window.setTitle("ConPong")
     love.graphics.setDefaultFilter("nearest", "nearest")
 
     math.randomseed(os.time())
@@ -39,7 +39,7 @@ function love.load()
     servingPlayer = 1
 
     player1 = Paddle(10, 30, 5, 20)
-    player2 = Paddle(VIRTUAL_WIDTH - 10, VIRTUAL_HEIGHT / 2 - 30, 5, 30)
+    player2 = Paddle(VIRTUAL_WIDTH - 10, VIRTUAL_HEIGHT / 2 - 30, 5, 20)
 
     ball = Ball(VIRTUAL_WIDTH / 2 - 2, VIRTUAL_HEIGHT / 2 - 2, 4, 4)
 
