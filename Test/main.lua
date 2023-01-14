@@ -77,7 +77,7 @@ function love.update(dt)
         ball:update(dt)
 
         if ball:collides(player1) then
-            ball.dx = -ball.dx * 1.03
+            ball.dx = -ball.dx * 1.2
             ball.x = player1.x + 5
             if ball.dy < 0 then
                 ball.dy = -math.random(10, 150)
@@ -87,7 +87,7 @@ function love.update(dt)
         end
         
         if ball:collides(player2) then
-            ball.dx = -ball.dx * 1.03
+            ball.dx = -ball.dx * 1.2
             ball.x = player2.x - 4
             if ball.dy < 0 then
                 ball.dy = -math.random(10, 150)
@@ -141,13 +141,13 @@ end
 function love.draw()
     push:apply("start")
 
-    love.graphics.clear(40/255, 45/255, 52/255, 255/255)
+    love.graphics.clear(40/255, 45/255, 104/255, 255/255)
     love.graphics.setFont(smallFont)
     
     if gameState == 'start' then
-        love.graphics.printf('Hello Start State!', 0, 20, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf('Welcome to ConPong!', 0, 20, VIRTUAL_WIDTH, 'center')
     else
-        love.graphics.printf('Hello Play State!', 0, 20, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf('CONPONG!', 0, 20, VIRTUAL_WIDTH, 'center')
     end
     
     love.graphics.print("Player 1: " .. tostring(player1Score), 10, VIRTUAL_HEIGHT - 10)
