@@ -12,7 +12,7 @@ end
 
 function Ball:reset()
     self.x = VIRTUAL_WIDTH / 2 - 2
-    self.y = VIRTUAL_WIDTH / 2 - 2
+    self.y = VIRTUAL_HEIGHT / 2 - 2
     self.dy = math.random(2) == 1 and -100 or 100
     self.dx = math.random(-100, 100)
 end
@@ -20,6 +20,16 @@ end
 function Ball:update(dt)
     self.x = self.x + self.dx * dt
     self.y = self.y + self.dy * dt 
+    
+    if self.y <= 0 then
+        self.y = 0
+        self.dy = -self.dy
+    end
+        
+    if self.y >= VIRTUAL_HEIGHT - 4 then
+        self.y = VIRTUAL_HEIGHT - 4
+        self.dy = -self.dy
+    end
 end
 
 function Ball:render()

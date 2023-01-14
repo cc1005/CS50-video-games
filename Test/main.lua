@@ -23,8 +23,8 @@ function love.load()
 
     math.randomseed(os.time())
 
+    microFont = love.graphics.newFont("font.ttf", 8)
     smallFont = love.graphics.newFont("font.ttf", 8)
-
     scoreFont = love.graphics.newFont("font.ttf", 24)
     
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
@@ -109,16 +109,6 @@ function love.update(dt)
             ball:reset()
             gameState = 'serve'
         end
-
-        if ball.y <= 0 then
-            ball.y = 0
-            ball.dy = -ball.dy
-        end
-        
-        if ball.y >= VIRTUAL_HEIGHT - 4 then
-            ball.y = VIRTUAL_HEIGHT - 4
-            ball.dy = -ball.dy
-        end
     end
 
     player1:update(dt)
@@ -129,7 +119,7 @@ function love.keypressed(key)
     if key == "escape" then
         love.event.quit()
     elseif key == "enter" or key == "return" then
-        if gameState == "start" or "serve" then
+        if gameState == "start" then
             gameState = "play"
         else
             gameState = "start"
@@ -158,12 +148,12 @@ function love.draw()
     ball:render()
 
     displayFPS()
-
     push:apply("end")
+    
 end 
 
 function displayFPS()
-    love.graphics.setFont(smallFont)
+    love.graphics.setFont(microFont)
     love.graphics.setColor(0, 255, 0, 255)
-    love.graphics.print("FPS: " .. tostring(love.timer.getFPS()), 10, 10)
+    love.graphics.print(tostring(love.timer.getFPS()), 4, 4)
 end
