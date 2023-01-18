@@ -18,12 +18,10 @@ function Bird:render()
     love.graphics.draw(self.image, self.x, self.y)
 end
 
- 
-function Bird:jump()
-    jumpValue = 70
-end
-
 function Bird:update(dt)
+    if love.keyboard.wasPressed('space') then
+        jumpValue = 70
+    end
     self.dy = self.dy + (GRAVITY - jumpValue) * dt 
     if jumpValue < 0 then
         jumpValue = 0
