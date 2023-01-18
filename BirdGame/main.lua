@@ -40,6 +40,10 @@ function love.keypressed(key)
     if key == 'escape' then
         love.event.quit()
     end
+
+    if key == 'space' then
+        bird:jump()
+    end
 end
 
 function love.draw()    
