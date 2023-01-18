@@ -9,8 +9,8 @@ WINDOW_HEIGHT = 720
 VIRTUAL_WIDTH = 512
 VIRTUAL_HEIGHT = 288
 
-local background = love.graphics.newImage('background.png')
-local ground = love.graphics.newImage('ground.png')
+local background = love.graphics.newImage('Assets/background.png')
+local ground = love.graphics.newImage('Assets/ground.png')
 local backgroundScroll = 0
 local groundScroll = 0
 local BACKGROUND_SCROLL_SPEED = 30
