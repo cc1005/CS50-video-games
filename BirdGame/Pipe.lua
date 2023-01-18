@@ -6,9 +6,8 @@ local PIPE_SCROLL = -40
 
 function Pipe:init()
     self.x = VIRTUAL_WIDTH + 20
-    self.y = VIRTUAL_HEIGHT --math.random(VIRTUAL_HEIGHT /4, VIRTUAL_HEIGHT - 10)
+    self.y = math.random(VIRTUAL_HEIGHT /4, VIRTUAL_HEIGHT - 10)
     self.width = PIPE_IMAGE:getWidth()
-    self.height = PIPE_IMAGE:getHeight()
 end
 
 function Pipe:update(dt)
