@@ -44,9 +44,12 @@ end
 
 function love.draw()    
     push:start()
+
     love.graphics.draw(background, -backgroundScroll, 0)
     love.graphics.draw(ground, -groundScroll, VIRTUAL_HEIGHT - 16)
+
     bird:render()
+
     push:finish()
 end
 
@@ -56,4 +59,6 @@ function love.update(dt)
 
     groundScroll = (groundScroll + GROUND_SCROLL_SPEED * dt)
         % VIRTUAL_WIDTH
+
+    bird:update(dt)
 end
