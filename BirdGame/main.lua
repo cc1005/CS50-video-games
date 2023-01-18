@@ -20,11 +20,16 @@ local GROUND_SCROLL_SPEED = 60
 local BACKGROUND_LOOPING_POINT = 413
 
 local bird = Bird()
+local pipes = {}
+
+
 
 function love.load()
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
     love.window.setTitle("ConorBird")
+
+    math.randomseed(os.time())
 
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
         vsync = true,
@@ -62,6 +67,7 @@ function love.draw()
     love.graphics.draw(ground, -groundScroll, VIRTUAL_HEIGHT - 16)
 
     bird:render()
+    pipe:render()
 
     push:finish()
 end
@@ -74,6 +80,7 @@ function love.update(dt)
         % VIRTUAL_WIDTH
 
     bird:update(dt)
+    pipe:update(dt)
     
 
     love.keyboard.keysPressed = {}
