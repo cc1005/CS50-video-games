@@ -2,6 +2,7 @@ push = require 'push'
 Class = require 'class'
 
 require 'Bird'
+require 'Pipe'
 
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
