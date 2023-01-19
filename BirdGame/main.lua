@@ -3,6 +3,7 @@ Class = require 'class'
 
 require 'Bird'
 require 'Pipe'
+require 'PipePair'
 
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
@@ -20,7 +21,7 @@ local GROUND_SCROLL_SPEED = 60
 local BACKGROUND_LOOPING_POINT = 413
 
 local bird = Bird()
-local pipes = {}
+local pipePairs = {}
 
 local spawnTimer = 0
 
