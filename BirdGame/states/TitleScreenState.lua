@@ -1,4 +1,4 @@
-TitleScreenState = Class{_includes = BaseState}
+TitleScreenState = Class{__includes = BaseState}
 
 function TitleScreenState:update(dt)
     if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
