@@ -2,7 +2,7 @@ Pipe = Class{}
 
 local PIPE_IMAGE = love.graphics.newImage('Assets/pipe.png')
  
-PIPE_SPEED = 40
+PIPE_SPEED = 90
 
 PIPE_HEIGHT = 288
 PIPE_WIDTH = 70
