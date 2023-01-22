@@ -29,9 +29,6 @@ local bird = Bird()
 local pipePairs = {}
 
 local spawnTimer = 0
- 
--- This variable makes sure there are no impossible gaps between different sets of pipes
-local lastY = -PIPE_HEIGHT + math.random(80) + 20
 
 local scrolling = true
 
@@ -95,37 +92,6 @@ function love.update(dt)
 
         gStateMachine:update(dt)
 
-        spawnTimer = spawnTimer + dt
-
-        if spawnTimer > 2 then
-            --[[ This allows for the last Y coordinate to be modified
-            to ensure the pipe gaps aren't too far apart. --  ]]
-            
-            local y = math.max(-PIPE_HEIGHT + 10,
-                math.min(lastY + math.random(-20, 20), VIRTUAL_HEIGHT - 90 - PIPE_HEIGHT))
-            lastY = y
-
-            table.insert(pipePairs, PipePair(y))
-            spawnTimer = 0
-        end
-
-        bird:update(dt)
-
-        for k, pair in pairs(pipePairs) do
-            pair:update(dt)
-
-            for l, pipe in pairs(pair.pipes) do
-                if bird:collides(pipe) then
-                    scrolling = false
-                end
-            end
-
-            for k, pair in pairs(pipePairs) do
-                if pair.remove then
-                    table.remove(pipePairs, k)
-                end
-            end
-        end
     end
 
     love.keyboard.keysPressed = {}

@@ -1,7 +1,7 @@
 TitleScreenState = Class{_includes = BaseState}
 
 function TitleScreenState:update(dt)
-    if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('retiurn') then
+    if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
         gStateMachine:change('play')
     end
 end
