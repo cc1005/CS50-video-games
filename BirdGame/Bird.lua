@@ -25,6 +25,14 @@ function Bird:collides(pipe)
         end
     end
 
+    if (self.y + 20) + (self.height) >= VIRTUAL_HEIGHT then
+        return true
+    end
+
+    if (self.y - 10) - (self.height) <= 0 then
+        return true
+    end
+
     return false
 end
 
