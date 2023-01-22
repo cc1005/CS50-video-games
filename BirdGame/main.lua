@@ -5,6 +5,11 @@ require 'Bird'
 require 'Pipe'
 require 'PipePair'
 
+require 'StateMachine'
+require 'states/BaseState'
+require 'states/PlayState'
+require 'states/TitleScreenState'
+
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
 
@@ -37,6 +42,12 @@ function love.load()
     love.window.setTitle("ConorBird")
 
     math.randomseed(os.time())
+
+    smallFont = love.graphics.newFont('font.ttf', 8)
+    mediumFont = love.graphics.newFont('font.ttf', 14)
+    largeFont = love.graphics.newFont('font.ttf', 28)
+    hugeFont = love.graphics.newFont('font.ttf', 56)
+    love.graphics.setFont(largeFont)
 
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
         vsync = true,
