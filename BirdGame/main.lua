@@ -55,6 +55,13 @@ function love.load()
         resizable = true
     })
 
+    gStateMachine = StateMachine {
+        ['title'] = function() return TitleScreenState() end,
+        ['play'] = function() return PlayState() end,
+    }
+
+    gStateMachine:change('title')
+
     love.keyboard.keysPressed = {}
 end
 
@@ -85,6 +92,8 @@ function love.update(dt)
 
         groundScroll = (groundScroll + GROUND_SCROLL_SPEED * dt)
             % VIRTUAL_WIDTH
+
+        gStateMachine:update(dt)
 
         spawnTimer = spawnTimer + dt
 
@@ -126,6 +135,8 @@ function love.draw()
     push:start()
 
     love.graphics.draw(background, -backgroundScroll, 0)
+
+    gStateMachine:render()
 
     for k, pair in pairs(pipePairs) do
         pair:render()
